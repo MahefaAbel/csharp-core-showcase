@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace csharp_core_showcase
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
+namespace CsBasic {
+    class Principal {
+        static void Main(string[] args) {
+            string nom = "World";
+            if (args.Length > 0){
+                nom = args[0];
+            }
+            Console.WriteLine("Hello, " + nom);
         }
     }
 }
