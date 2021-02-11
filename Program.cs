@@ -135,6 +135,7 @@ namespace CsBasic {
 
     class Animal {
         int age;
+        public Animal() { }        
         public Animal(int mAge) {
             this.age = mAge;
         }
