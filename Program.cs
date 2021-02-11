@@ -6,12 +6,23 @@ namespace CsBasic {
             //Principal.testArgFactorial(args);
             //Principal.testTypeMopdifier();
             //Principal.testCating();
-            Principal.testNullable();
+            //Principal.testNullable();
+            Principal.testBox();
             return 0;
+        }
+
+        static void testBox() {
+            int nb = 3;
+            object obj = nb; // Boxing
+            int nb2 = (int)obj; // Unboxing
+            Console.WriteLine("Nb : {0}", nb);
+            Console.WriteLine("Obj : {0}", obj);
+            Console.WriteLine("Nb2 : {0}", nb2);
         }
 
         static void testNullable() {
             int nb;
+            int? nb2;
             Nullable<int> nullableNb = 3;
             Nullable<int> nullableNb2 = null;
             Animal animal = null;
