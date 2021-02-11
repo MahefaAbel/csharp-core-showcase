@@ -6,12 +6,64 @@ namespace CsBasic {
             //Principal.testArgFactorial(args);
             //Principal.testTypeMopdifier();
             //Principal.testCating();
-            Principal.testNullable();
+            //Principal.testNullable();
+            //Principal.testBox();
+            //Principal.testArray();
+            //Principal.testTypeChecking();
+            Principal.testStaticConstructor();
             return 0;
+        }
+
+        static void testStaticConstructor() {
+            Console.WriteLine("testStaticConstructor::debut");
+            Animal animal1, animal2, animal3;
+            Console.WriteLine("testStaticConstructor::animal1,2,3 declared");
+            animal1 = new Animal();
+            Console.WriteLine("testStaticConstructor::animal1 instanced");
+            animal2 = new Animal();
+            Console.WriteLine("testStaticConstructor::animal2 instanced");
+            animal3 = new Animal();
+            Console.WriteLine("testStaticConstructor::animal3 instanced");
+
+            Console.WriteLine("testStaticConstructor::fin");
+        }
+
+        static void testTypeChecking() {
+            object animal = new Animal(4);
+            object obj = new object();
+            Console.WriteLine("Type 'object obj' : {0}", obj.GetType());
+            Console.WriteLine("Type 'object animal': {0}", animal.GetType());
+            // Resultats :
+            // System.Object
+            // CsBasic.Animal
+
+            if (animal.GetType() == typeof(CsBasic.Animal)){
+
+            }
+            if (animal is CsBasic.Animal)
+            {
+
+            }
+        }
+
+        static void testArray() {
+            int[] arrInt = new int[3];
+            arrInt[3] = 1;
+            Console.WriteLine(arrInt[3]);
+        }
+
+        static void testBox() {
+            int nb = 3;
+            object obj = nb; // Boxing
+            int nb2 = (int)obj; // Unboxing
+            Console.WriteLine("Nb : {0}", nb);
+            Console.WriteLine("Obj : {0}", obj);
+            Console.WriteLine("Nb2 : {0}", nb2);
         }
 
         static void testNullable() {
             int nb;
+            int? nb2;
             Nullable<int> nullableNb = 3;
             Nullable<int> nullableNb2 = null;
             Animal animal = null;
@@ -117,7 +169,30 @@ namespace CsBasic {
             }
         }
     }
-    
+
+    class Animal
+    {
+        int age;
+        static Animal() {
+            Console.WriteLine("CsBasic.Animal.constructor.static");
+        }
+        public Animal() {
+            Console.WriteLine("CsBasic.Animal.constructor.Animal()");
+        }
+        public Animal(int mAge)
+        {
+            Console.WriteLine("CsBasic.Animal.constructor.Animal(int mAge)");
+            this.age = mAge;
+        }
+        public void setAge(int nAge)
+        {
+            this.age = nAge;
+        }
+        public int getAge()
+        {
+            return this.age;
+        }
+    }
     class CaseValueRef{
         public static void valueTypeModifier(int nb){
             nb = 20;
@@ -132,20 +207,7 @@ namespace CsBasic {
             animal.setAge(6);
         }
     }
-
-    class Animal {
-        int age;
-        public Animal(int mAge) {
-            this.age = mAge;
-        }
-        public void setAge(int nAge) {
-            this.age = nAge;
-        }
-        public int getAge() {
-            return this.age;
-        }
-    }
-
+        
     class Tigre : Animal {
         int classPredator;
         public Tigre(int age): base(age)
