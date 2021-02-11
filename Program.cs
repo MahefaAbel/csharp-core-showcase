@@ -24,6 +24,8 @@ namespace CsBasic {
             animal.seDeplacer();
             tigre.seDeplacer();
             taureau.seDeplacer();
+            taureau.seDeplacer(10);
+
         }
 
         static void testSuperTigre() {
@@ -265,6 +267,10 @@ namespace CsBasic {
         public override void seDeplacer()
         {
             Console.WriteLine("Taureau::seDeplacer()");
+        }
+        public override void seDeplacer(int distance) 
+        {
+            Console.WriteLine("Taureau::seDeplacer(int distance)");
         }
     }
 }
