@@ -11,13 +11,24 @@ namespace CsBasic {
             //Principal.testArray();
             //Principal.testTypeChecking();
             //Principal.testStaticConstructor();
-            Principal.testSuperTigre();
+            //Principal.testSuperTigre();
+            Principal.testPolymorphism();
             return 0;
         }
 
+        static void testPolymorphism() {
+            Animal animal = new Animal(4);
+            Animal tigre = new Tigre(5);
+            Animal taureau = new Taureau(6);
+
+            animal.seDeplacer();
+            tigre.seDeplacer();
+            taureau.seDeplacer();
+        }
+
         static void testSuperTigre() {
-            SuperTigre superTiger = new SuperTigre();
-            Console.WriteLine("superTiger type : {0}", superTiger.GetType());
+            //SuperTigre superTiger = new SuperTigre();
+            //Console.WriteLine("superTiger type : {0}", superTiger.GetType());
         }
 
         static void testStaticConstructor() {
@@ -176,7 +187,7 @@ namespace CsBasic {
         }
     }
 
-    abstract class Animal: Object
+    class Animal: Object
     {
         int age;
         static Animal() {
@@ -198,14 +209,16 @@ namespace CsBasic {
         {
             return this.age;
         }
-        public abstract void seDeplacer();
+        public virtual void seDeplacer() {
+            Console.WriteLine("Animal::seDeplacer");
+        }
         ~Animal() {
             //
         }
-        public override void Finalize()
-        {
-            Console.WriteLine();
-        }
+        //public override void Finalize()
+        //{
+        //    Console.WriteLine();
+        //}
     }
     class CaseValueRef{
         public static void valueTypeModifier(int nb){
@@ -229,14 +242,16 @@ namespace CsBasic {
 
         }
         public override void seDeplacer() {
+            Console.WriteLine("Tigre::seDeplacer()");
         }
     }
 
-    class SuperTigre : Tigre {
-        public SuperTigre() {
-            Console.WriteLine("Youpy, La SuperTigre est crée");
-        }
-    }
+    //class SuperTigre : Tigre {
+    //    public SuperTigre() {
+    //        Console.WriteLine("Youpy, La SuperTigre est crée");
+    //    }
+        
+    //}
 
     class Taureau : Animal {
         int longeurCorne;
@@ -245,6 +260,11 @@ namespace CsBasic {
             : base(age)
         {
 
+        }
+
+        public override void seDeplacer()
+        {
+            Console.WriteLine("Taureau::seDeplacer()");
         }
     }
 }
