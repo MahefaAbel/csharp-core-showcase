@@ -9,8 +9,23 @@ namespace CsBasic {
             //Principal.testNullable();
             //Principal.testBox();
             //Principal.testArray();
-            Principal.testTypeChecking();
+            //Principal.testTypeChecking();
+            Principal.testStaticConstructor();
             return 0;
+        }
+
+        static void testStaticConstructor() {
+            Console.WriteLine("testStaticConstructor::debut");
+            Animal animal1, animal2, animal3;
+            Console.WriteLine("testStaticConstructor::animal1,2,3 declared");
+            animal1 = new Animal();
+            Console.WriteLine("testStaticConstructor::animal1 instanced");
+            animal2 = new Animal();
+            Console.WriteLine("testStaticConstructor::animal2 instanced");
+            animal3 = new Animal();
+            Console.WriteLine("testStaticConstructor::animal3 instanced");
+
+            Console.WriteLine("testStaticConstructor::fin");
         }
 
         static void testTypeChecking() {
@@ -23,6 +38,10 @@ namespace CsBasic {
             // CsBasic.Animal
 
             if (animal.GetType() == typeof(CsBasic.Animal)){
+
+            }
+            if (animal is CsBasic.Animal)
+            {
 
             }
         }
@@ -154,9 +173,15 @@ namespace CsBasic {
     class Animal
     {
         int age;
-        public Animal() { }
+        static Animal() {
+            Console.WriteLine("CsBasic.Animal.constructor.static");
+        }
+        public Animal() {
+            Console.WriteLine("CsBasic.Animal.constructor.Animal()");
+        }
         public Animal(int mAge)
         {
+            Console.WriteLine("CsBasic.Animal.constructor.Animal(int mAge)");
             this.age = mAge;
         }
         public void setAge(int nAge)
