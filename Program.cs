@@ -10,8 +10,14 @@ namespace CsBasic {
             //Principal.testBox();
             //Principal.testArray();
             //Principal.testTypeChecking();
-            Principal.testStaticConstructor();
+            //Principal.testStaticConstructor();
+            Principal.testSuperTigre();
             return 0;
+        }
+
+        static void testSuperTigre() {
+            SuperTigre superTiger = new SuperTigre();
+            Console.WriteLine("superTiger type : {0}", superTiger.GetType());
         }
 
         static void testStaticConstructor() {
@@ -170,7 +176,7 @@ namespace CsBasic {
         }
     }
 
-    class Animal
+    abstract class Animal: Object
     {
         int age;
         static Animal() {
@@ -192,6 +198,14 @@ namespace CsBasic {
         {
             return this.age;
         }
+        public abstract void seDeplacer();
+        ~Animal() {
+            //
+        }
+        public override void Finalize()
+        {
+            Console.WriteLine();
+        }
     }
     class CaseValueRef{
         public static void valueTypeModifier(int nb){
@@ -208,11 +222,19 @@ namespace CsBasic {
         }
     }
         
-    class Tigre : Animal {
+    sealed class Tigre : Animal {
         int classPredator;
         public Tigre(int age): base(age)
         {
 
+        }
+        public override void seDeplacer() {
+        }
+    }
+
+    class SuperTigre : Tigre {
+        public SuperTigre() {
+            Console.WriteLine("Youpy, La SuperTigre est crée");
         }
     }
 
