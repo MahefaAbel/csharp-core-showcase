@@ -4,8 +4,50 @@ namespace CsBasic {
     class Principal {
         static int Main(string[] args) {
             //Principal.testArgFactorial(args);
-            Principal.testTypeMopdifier();
+            //Principal.testTypeMopdifier();
+            //Principal.testCating();
+            Principal.testNullable();
             return 0;
+        }
+
+        static void testNullable() {
+            int nb;
+            Nullable<int> nullableNb = 3;
+            Nullable<int> nullableNb2 = null;
+            Animal animal = null;
+            Console.WriteLine("Nb : {0} {1} {2}", nullableNb.HasValue, nullableNb2, nullableNb2.HasValue);
+        }
+
+        static void testCating() {
+            int nb = 3;
+
+            double nbd = nb;
+            Console.WriteLine("Entier : " + nb);
+            Console.WriteLine("Double : " + nbd);
+            Console.WriteLine("");
+            double nbd2 = 4.002;
+            nb = (int)nbd2;
+            Console.WriteLine("Double : " + nbd2);
+            Console.WriteLine("Entier : " + nb);
+            Console.WriteLine("");
+            int nb2 = 4;
+            double nb2d = Convert.ToDouble(5.1);
+            int nb21 = Convert.ToInt32(nb2d);
+            Console.WriteLine("");
+
+            Animal animal = new Animal(5);
+            Tigre tigre = new Tigre(4);
+            Taureau taureau = new Taureau(6);
+            Console.WriteLine("Animal : "+ animal.getAge());
+            Console.WriteLine("Tigre : "+ tigre.getAge());
+            Console.WriteLine("Taureau: "+ taureau.getAge());
+            Console.WriteLine("");
+
+            animal = tigre;
+            Console.WriteLine("Animal : "+ animal.getAge());
+
+            tigre = (Tigre)animal;
+            Console.WriteLine("Tigre : " + tigre.getAge());
         }
 
         static int testTypeMopdifier() {
@@ -76,31 +118,49 @@ namespace CsBasic {
         }
     }
     
-        class CaseValueRef{
-            public static void valueTypeModifier(int nb){
-                nb = 20;
-            }
-
-            public static void refTypeModifier(ref int nb)
-            {
-                nb = 30;
-            }
-
-            public static void modifObject(Animal animal) {
-                animal.setAge(6);
-            }
+    class CaseValueRef{
+        public static void valueTypeModifier(int nb){
+            nb = 20;
         }
 
-        class Animal {
-            int age;
-            public Animal(int mAge) {
-                this.age = mAge;
-            }
-            public void setAge(int nAge) {
-                this.age = nAge;
-            }
-            public int getAge() {
-                return this.age;
-            }
+        public static void refTypeModifier(ref int nb)
+        {
+            nb = 30;
         }
+
+        public static void modifObject(Animal animal) {
+            animal.setAge(6);
+        }
+    }
+
+    class Animal {
+        int age;
+        public Animal(int mAge) {
+            this.age = mAge;
+        }
+        public void setAge(int nAge) {
+            this.age = nAge;
+        }
+        public int getAge() {
+            return this.age;
+        }
+    }
+
+    class Tigre : Animal {
+        int classPredator;
+        public Tigre(int age): base(age)
+        {
+
+        }
+    }
+
+    class Taureau : Animal {
+        int longeurCorne;
+
+        public Taureau(int age)
+            : base(age)
+        {
+
+        }
+    }
 }
